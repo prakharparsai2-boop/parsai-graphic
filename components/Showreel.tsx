@@ -20,10 +20,10 @@ const VIDEOS = [
     desc: "We help brands build a strong digital presence through clean visuals, sharp edits, and motion that grabs attention. This video shows what we do in motion.",
   },
   {
-    id: "1158807299", // Replaced invalid ID with a working one
-    title: "loreum upsum",
-    subtitle: "loreum ipsum jipsum ipsum tipsum",
-    desc: "High-impact commercial edits focused on conversion, retention, and brand storytelling for global clients.",
+    id: "1170638202", // Replaced invalid ID with a working one
+    title: "Comming soon",
+    subtitle: "We are working on it",
+    desc: "Soon we will be adding more videos to our showreel",
   },
 ];
 
@@ -90,7 +90,7 @@ const Showreel: React.FC = () => {
 
     return () => {
       if (playerRef.current) {
-        playerRef.current.destroy().catch(() => {});
+        playerRef.current.destroy().catch(() => { });
       }
     };
   }, [currentVideoIndex]);
@@ -100,9 +100,9 @@ const Showreel: React.FC = () => {
     if (!playerRef.current) return;
     playerRef.current.getPaused().then((paused) => {
       if (paused) {
-        playerRef.current?.play().catch(() => {});
+        playerRef.current?.play().catch(() => { });
       } else {
-        playerRef.current?.pause().catch(() => {});
+        playerRef.current?.pause().catch(() => { });
       }
     });
   };
