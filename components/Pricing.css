@@ -298,6 +298,14 @@
 
 /* --- Media Queries --- */
 
+/* Mobile Enhancements (Reduce GPU load) */
+@media (max-width: 768px) {
+  .pricing-card {
+    /* If there were any shadows, ensure they are minimal here */
+    box-shadow: none;
+  }
+}
+
 /* Tablet (768px - 1024px) */
 @media (min-width: 768px) {
   .pricing-section {

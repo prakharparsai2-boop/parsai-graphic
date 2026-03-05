@@ -19,8 +19,8 @@ const Hero: React.FC = () => {
   const isIntersecting = useIntersectionObserver(logosRef);
 
   useEffect(() => {
-    // Only animate on mobile and when intersecting
-    if (window.innerWidth > 768 || !isIntersecting) return;
+    // Only animate when intersecting
+    if (!isIntersecting) return;
 
     const interval = setInterval(() => {
       setCurrentLogoIndex((prev) => (prev + 1) % LOGOS.length);

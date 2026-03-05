@@ -12,7 +12,8 @@
 
 .services-main-title {
   font-family: var(--font-sans);
-  font-size: 2.75rem; /* Mobile Base */
+  font-size: 2.75rem;
+  /* Mobile Base */
   font-weight: 800;
   color: white;
   margin-bottom: 1.5rem;
@@ -21,19 +22,22 @@
 
 @media (min-width: 768px) {
   .services-main-title {
-    font-size: 4rem; /* Tablet */
+    font-size: 4rem;
+    /* Tablet */
   }
 }
 
 @media (min-width: 1024px) {
   .services-main-title {
-    font-size: 5rem; /* Laptop */
+    font-size: 5rem;
+    /* Laptop */
   }
 }
 
 @media (min-width: 1536px) {
   .services-main-title {
-    font-size: 6rem; /* Desktop */
+    font-size: 6rem;
+    /* Desktop */
   }
 }
 
@@ -54,6 +58,17 @@
   margin-top: 4rem;
 }
 
+@media (max-width: 768px) {
+  .services-page {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .services-main-title {
+    font-size: 2rem;
+  }
+}
+
 /* =========================================
    ENTRANCE ANIMATIONS
    ========================================= */
@@ -65,10 +80,30 @@
     transform: translateY(40px) scale(0.95);
     filter: blur(12px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
+  }
+}
+
+/* Optimization for Tablet/Mobile: Remove blur from entrance animations */
+@media (max-width: 1024px) {
+  @keyframes services-title-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .anim-services-title {
+    will-change: transform, opacity;
   }
 }
 
@@ -78,6 +113,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -100,12 +136,15 @@
 .delay-100 {
   animation-delay: 0.1s;
 }
+
 .delay-200 {
   animation-delay: 0.2s;
 }
+
 .delay-300 {
   animation-delay: 0.3s;
 }
+
 .delay-400 {
   animation-delay: 0.4s;
 }

@@ -12,7 +12,8 @@
 
 .my-work-title {
   font-family: var(--font-sans);
-  font-size: 2.75rem; /* Mobile Base */
+  font-size: 2.75rem;
+  /* Mobile Base */
   font-weight: 800;
   color: white;
   margin-bottom: 1.5rem;
@@ -21,19 +22,22 @@
 
 @media (min-width: 768px) {
   .my-work-title {
-    font-size: 4rem; /* Tablet */
+    font-size: 4rem;
+    /* Tablet */
   }
 }
 
 @media (min-width: 1024px) {
   .my-work-title {
-    font-size: 5rem; /* Laptop */
+    font-size: 5rem;
+    /* Laptop */
   }
 }
 
 @media (min-width: 1536px) {
   .my-work-title {
-    font-size: 6rem; /* Desktop */
+    font-size: 6rem;
+    /* Desktop */
   }
 }
 
@@ -49,6 +53,17 @@
   margin-top: 4rem;
 }
 
+@media (max-width: 768px) {
+  .my-work-page {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .my-work-title {
+    font-size: 2rem;
+  }
+}
+
 /* =========================================
    ENTRANCE ANIMATIONS
    ========================================= */
@@ -60,10 +75,30 @@
     transform: translateY(40px) scale(0.95);
     filter: blur(12px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
+  }
+}
+
+/* Optimization for Tablet/Mobile: Remove blur from entrance animations */
+@media (max-width: 1024px) {
+  @keyframes work-title-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .anim-work-title {
+    will-change: transform, opacity;
   }
 }
 
@@ -73,6 +108,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -95,9 +131,11 @@
 .delay-100 {
   animation-delay: 0.1s;
 }
+
 .delay-200 {
   animation-delay: 0.2s;
 }
+
 .delay-300 {
   animation-delay: 0.3s;
 }
@@ -106,21 +144,27 @@
 .work-grid .project-card.anim-work-fade:nth-child(1) {
   animation-delay: 0.3s;
 }
+
 .work-grid .project-card.anim-work-fade:nth-child(2) {
   animation-delay: 0.4s;
 }
+
 .work-grid .project-card.anim-work-fade:nth-child(3) {
   animation-delay: 0.5s;
 }
+
 .work-grid .project-card.anim-work-fade:nth-child(4) {
   animation-delay: 0.6s;
 }
+
 .work-grid .project-card.anim-work-fade:nth-child(5) {
   animation-delay: 0.7s;
 }
+
 .work-grid .project-card.anim-work-fade:nth-child(6) {
   animation-delay: 0.8s;
 }
+
 .work-grid .project-card.anim-work-fade:nth-child(n + 7) {
   animation-delay: 0.9s;
 }

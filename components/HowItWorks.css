@@ -104,11 +104,9 @@
   transform: translate(-50%, -50%);
   width: 3.5rem;
   height: 3.5rem;
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.2) 0%,
-    rgba(59, 130, 246, 0) 70%
-  );
+  background: radial-gradient(circle,
+      rgba(59, 130, 246, 0.2) 0%,
+      rgba(59, 130, 246, 0) 70%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -137,6 +135,7 @@
     transform: scale(0.8);
     opacity: 1;
   }
+
   100% {
     transform: scale(1.5);
     opacity: 0;
@@ -156,10 +155,12 @@
   top: 15%;
   left: 10%;
 }
+
 .node-2 {
   top: 20%;
   right: 10%;
 }
+
 .node-3 {
   bottom: 10%;
   left: 45%;
@@ -215,13 +216,19 @@
 .p-1 {
   animation: travel-1 3s linear infinite;
 }
+
 .p-2 {
   animation: travel-2 3.5s linear infinite;
   animation-delay: 1s;
 }
+
 .p-3 {
   animation: travel-3 3s linear infinite;
   animation-delay: 0.5s;
+}
+
+.is-out-of-view .particle {
+  animation-play-state: paused;
 }
 
 @keyframes travel-1 {
@@ -230,48 +237,59 @@
     left: 10%;
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     top: 50%;
     left: 50%;
     opacity: 0;
   }
 }
+
 @keyframes travel-2 {
   0% {
     top: 20%;
     right: 10%;
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     top: 50%;
     right: 50%;
     opacity: 0;
   }
 }
+
 @keyframes travel-3 {
   0% {
     bottom: 10%;
     left: 45%;
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     bottom: 50%;
     left: 50%;
@@ -355,10 +373,12 @@
   background-color: #60a5fa;
   opacity: 0.6;
 }
+
 .track-audio .clip {
   background-color: #4ade80;
   opacity: 0.6;
 }
+
 .track-fx .clip {
   background-color: #c084fc;
   opacity: 0.6;
@@ -368,15 +388,18 @@
   left: 15%;
   width: 25%;
 }
+
 .clip-v2 {
   left: 42%;
   width: 30%;
   background-color: #3b82f6;
 }
+
 .clip-a1 {
   left: 15%;
   width: 60%;
 }
+
 .clip-fx1 {
   left: 30%;
   width: 20%;
@@ -390,6 +413,10 @@
   width: 1px;
   z-index: 10;
   animation: playhead-scan 6s linear infinite;
+}
+
+.is-out-of-view .playhead {
+  animation-play-state: paused;
 }
 
 .playhead-line {
@@ -413,6 +440,7 @@
   0% {
     left: 0%;
   }
+
   100% {
     left: 100%;
   }
@@ -461,12 +489,15 @@
   height: 0.4rem;
   border-radius: 50%;
 }
+
 .dot-red {
   background-color: #ef4444;
 }
+
 .dot-yellow {
   background-color: #eab308;
 }
+
 .dot-green {
   background-color: #22c55e;
 }
@@ -504,13 +535,19 @@
   animation: msg-appear 7s infinite;
 }
 
+.is-out-of-view .chat-row {
+  animation-play-state: paused;
+}
+
 /* Sequencing */
 .msg-1 {
   animation-delay: 0s;
 }
+
 .msg-2 {
   animation-delay: 2.5s;
 }
+
 .msg-3 {
   animation-delay: 5s;
 }
@@ -520,11 +557,13 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   5%,
   95% {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-5px);
@@ -547,6 +586,7 @@
 .client-avatar {
   background-color: #f59e0b;
 }
+
 .editor-avatar {
   background-color: #3b82f6;
 }
@@ -601,6 +641,7 @@
   color: white;
   border: none;
 }
+
 .chat-bubble.success::before {
   background-color: #10b981;
 }
@@ -651,23 +692,31 @@
   z-index: 20;
 }
 
+.is-out-of-view .approval-stamp {
+  animation-play-state: paused;
+}
+
 @keyframes stamp-slam {
   0% {
     transform: rotate(-5deg) scale(2);
     opacity: 0;
   }
+
   5% {
     transform: rotate(-5deg) scale(1);
     opacity: 1;
   }
+
   65% {
     transform: rotate(-5deg) scale(1);
     opacity: 1;
   }
+
   75% {
     transform: rotate(-5deg) scale(1);
     opacity: 0;
   }
+
   100% {
     transform: rotate(-5deg) scale(0);
     opacity: 0;
@@ -726,28 +775,38 @@
   animation: fade-chart 4s ease-out infinite;
 }
 
+.is-out-of-view .chart-path,
+.is-out-of-view .chart-area {
+  animation-play-state: paused;
+}
+
 @keyframes draw-chart {
   0% {
     stroke-dashoffset: 120;
   }
+
   40%,
   80% {
     stroke-dashoffset: 0;
   }
+
   100% {
     stroke-dashoffset: 0;
   }
 }
 
 @keyframes fade-chart {
+
   0%,
   20% {
     opacity: 0;
   }
+
   40%,
   80% {
     opacity: 1;
   }
+
   100% {
     opacity: 1;
   }
@@ -772,14 +831,17 @@
 }
 
 @keyframes tooltip-pop {
+
   0%,
   30% {
     transform: scale(0);
   }
+
   40%,
   90% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(0);
   }
@@ -809,14 +871,17 @@
   transform: translateY(-2px);
   color: white;
 }
+
 .youtube:hover {
   color: #ef4444;
   border-color: rgba(239, 68, 68, 0.3);
 }
+
 .instagram:hover {
   color: #ec4899;
   border-color: rgba(236, 72, 153, 0.3);
 }
+
 .tiktok:hover {
   color: #000;
   background-color: #fff;
@@ -841,16 +906,19 @@
 }
 
 @keyframes file-appear {
+
   0%,
   50% {
     opacity: 0;
     transform: translateY(10px);
   }
+
   60%,
   90% {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
   }
@@ -892,6 +960,7 @@
   .node-1 {
     left: 15%;
   }
+
   .node-2 {
     right: 15%;
   }
@@ -929,17 +998,21 @@
     width: 4rem;
     height: 4rem;
   }
+
   .hub-icon {
     width: 1.75rem;
     height: 1.75rem;
   }
+
   .node-icon {
     width: 2.5rem;
     height: 2.5rem;
   }
+
   .node-1 {
     left: 15%;
   }
+
   .node-2 {
     right: 15%;
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Matter from "matter-js";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import "./Contact.css";
 
 const TAGS = [
@@ -24,6 +25,11 @@ const Contact: React.FC = () => {
   const tagsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [isReady, setIsReady] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
+
+  const isInView = useIntersectionObserver(containerRef, {
+    threshold: 0.1,
+    rootMargin: '100px'
+  });
 
   // Filter tags based on screen size
   const getFilteredTags = () => {
@@ -115,6 +121,20 @@ const Contact: React.FC = () => {
 
       // 4. Mouse Interaction
       const mouse = Matter.Mouse.create(container);
+
+      // Fix for desktop and mobile scroll blocking
+      const m = mouse as any;
+      mouse.element.removeEventListener("mousewheel", m.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", m.mousewheel);
+
+      mouse.element.removeEventListener("touchstart", m.mousedown);
+      mouse.element.removeEventListener("touchmove", m.mousemove);
+      mouse.element.removeEventListener("touchend", m.mouseup);
+
+      mouse.element.addEventListener("touchstart", m.mousedown, { passive: true });
+      mouse.element.addEventListener("touchmove", m.mousemove, { passive: true });
+      mouse.element.addEventListener("touchend", m.mouseup, { passive: true });
+
       const mouseConstraint = Matter.MouseConstraint.create(engine, {
         mouse: mouse,
         constraint: { stiffness: 0.2, render: { visible: false } }
@@ -123,9 +143,9 @@ const Contact: React.FC = () => {
 
       // 5. Update Loop
       runner = Matter.Runner.create();
-      Matter.Runner.run(runner, engine);
 
       const update = () => {
+        // Only update styles if in view (though useEffect cleanup handles this largely)
         bodies.forEach(body => {
           const el = (body as any).element;
           if (el) {
@@ -138,7 +158,12 @@ const Contact: React.FC = () => {
         });
         raf = requestAnimationFrame(update);
       };
-      raf = requestAnimationFrame(update);
+
+      // Start simulation and loop ONLY if in view
+      if (isInView) {
+        Matter.Runner.run(runner, engine);
+        raf = requestAnimationFrame(update);
+      }
 
       // 6. Resize Handler
       resizeHandler = () => {
@@ -160,7 +185,7 @@ const Contact: React.FC = () => {
       if (raf) cancelAnimationFrame(raf);
       if (resizeHandler) window.removeEventListener("resize", resizeHandler);
     };
-  }, [windowWidth]); // Re-init on width change
+  }, [windowWidth, isInView]); // Re-init on width change or view visibility
 
   return (
     <section id="contact" className="contact-section">

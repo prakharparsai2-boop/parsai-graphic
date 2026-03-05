@@ -25,7 +25,8 @@
   left: -15%;
   width: 60vw;
   height: 60vw;
-  background-color: rgba(234, 179, 8, 0.025); /* Purple-600 */
+  background-color: rgba(234, 179, 8, 0.025);
+  /* Purple-600 */
 }
 
 .bg-glow-indigo-right {
@@ -33,7 +34,8 @@
   right: -10%;
   width: 70vw;
   height: 70vw;
-  background-color: rgba(59, 130, 246, 0.04); /* Indigo-600 */
+  background-color: rgba(59, 130, 246, 0.04);
+  /* Indigo-600 */
 }
 
 .website-bg-wrapper .bg-noise {
@@ -48,4 +50,21 @@
 .relative-z {
   position: relative;
   z-index: 10;
+}
+
+/* Optimization for Tablet/Mobile */
+@media (max-width: 1024px) {
+  .website-bg-wrapper .bg-glow {
+    filter: none;
+  }
+
+  .bg-glow-purple-left {
+    background-color: transparent;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.04) 0%, transparent 60%);
+  }
+
+  .bg-glow-indigo-right {
+    background-color: transparent;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+  }
 }

@@ -23,8 +23,6 @@
   align-items: center;
   justify-content: center;
   user-select: none;
-  touch-action: none;
-  /* Prevents scroll interference when dragging physics items */
   cursor: default;
   transition:
     border-color 0.3s,

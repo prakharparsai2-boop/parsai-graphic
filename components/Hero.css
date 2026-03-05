@@ -521,6 +521,10 @@
     overflow: visible;
   }
 
+  .hero-title {
+    font-size: 14vw;
+  }
+
   .hero-intro {
     gap: 1rem;
     margin-top: 54vh !important;

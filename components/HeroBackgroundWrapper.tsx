@@ -1,4 +1,5 @@
 import React from 'react';
+import PausableAnimation from './PausableAnimation';
 import './HeroBackgroundWrapper.css';
 
 interface HeroBackgroundWrapperProps {
@@ -9,7 +10,7 @@ const HeroBackgroundWrapper: React.FC<HeroBackgroundWrapperProps> = ({ children 
   return (
     <div className="hero-bg-wrapper">
       <div className="hero-bg-layer">
-        <div className="bg-glow bg-glow-yellow animate-pulse" />
+        <PausableAnimation className="bg-glow bg-glow-yellow animate-pulse" />
         <div className="bg-glow bg-glow-blue" />
         <div className="bg-noise" />
       </div>
