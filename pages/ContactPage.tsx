@@ -159,9 +159,9 @@ const ContactPage: React.FC = () => {
                       <span>YouTube</span>
                     </a>
                     <a
-                      href="https://wa.me/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+              href="https://wa.me/919926490283"
+              target="_blank"
+              rel="noopener noreferrer"
                       className="social-pill"
                     >
                       <img
