@@ -1,26 +1,51 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Loader from './components/Loader';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
-import './App.css';
+import React, { useEffect, useState, Suspense, lazy } from "react";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Loader from "./components/Loader";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import "./App.css";
 
-import Home from './pages/Home';
-import About from './pages/About';
-import ServicesPage from './pages/Services';
-import MyWork from './pages/MyWork';
-import ProjectDetail from './pages/ProjectDetail';
-import ContactPage from './pages/ContactPage';
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ServicesPage from "./pages/Services";
+import MyWork from "./pages/MyWork";
+import ProjectDetail from "./pages/ProjectDetail";
+import ContactPage from "./pages/ContactPage";
 
-// Component to scroll to top on route change
-function ScrollToTop() {
-  const { pathname } = useLocation();
+// Component to handle scrolling (top or anchor) on route change
+function ScrollToTop({ isLoading }: { isLoading: boolean }) {
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Always scroll to top when the path changes
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (isLoading) return;
+
+    // We check BOTH the React Router state AND the raw window location
+    // This handles direct entries like http://localhost:3000/trending-edits
+    const isTrendingEdits =
+      hash.includes("trending-edits") ||
+      pathname.includes("trending-edits") ||
+      window.location.pathname.includes("trending-edits") ||
+      window.location.hash.includes("trending-edits");
+
+    if (isTrendingEdits) {
+      const element = document.getElementById("trending-edits");
+      if (element) {
+        // Use a longer timeout to ensure the DOM has fully settled after loader
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash, isLoading]);
 
   return null;
 }
@@ -31,13 +56,13 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const assets = [
-      '/3d-animation.jpg',
-      '/arrow.gif',
-      '/event-video.jpg',
-      '/hero.png',
-      '/mr-beast.jpg',
-      '/prakhar.jpg',
-      '/talking-head.jpg',
+      "/3d-animation.jpg",
+      "/arrow.gif",
+      "/event-video.jpg",
+      "/hero.png",
+      "/mr-beast.jpg",
+      "/prakhar.jpg",
+      "/talking-head.jpg",
     ];
 
     const totalAssets = assets.length + 1; // +1 for fonts
@@ -53,10 +78,6 @@ const App: React.FC = () => {
       const elapsedTime = Date.now() - startTime;
       const timeProgress = Math.min((elapsedTime / minDuration) * 100, 100);
 
-      // We want the progress shown to be the minimum of time-based progress and asset-based progress
-      // But actually, for a "smooth" feel, let's just use time-based primarily and cap it until assets are ready
-      // if we want to be honest. Or just use time-based and wait at 99 if assets aren't done.
-
       if (assetsLoaded) {
         setProgress(timeProgress);
         if (timeProgress >= 100) {
@@ -65,10 +86,9 @@ const App: React.FC = () => {
           setTimeout(() => setIsLoading(false), 500);
         }
       } else {
-        // Stay at max 95% until assets are actually loaded
         setProgress(Math.min(timeProgress, 95));
       }
-    }, 16); // ~60fps
+    }, 16);
 
     const checkAllLoaded = () => {
       loadedCount++;
@@ -77,15 +97,13 @@ const App: React.FC = () => {
       }
     };
 
-    // Preload Images
-    assets.forEach(src => {
+    assets.forEach((src) => {
       const img = new Image();
       img.src = src;
       img.onload = checkAllLoaded;
       img.onerror = checkAllLoaded;
     });
 
-    // Preload Fonts
     if (document.fonts) {
       document.fonts.ready.then(checkAllLoaded).catch(checkAllLoaded);
     } else {
@@ -98,17 +116,14 @@ const App: React.FC = () => {
   return (
     <Router>
       <Loader progress={progress} isLoading={isLoading} />
-      <ScrollToTop />
-      {/* 
-        Only render the app content once we are not loading.
-        This ensures entrance animations start exactly when the site is revealed.
-      */}
+      <ScrollToTop isLoading={isLoading} />
       {!isLoading && (
         <div className="app-wrapper loaded">
           <Navbar />
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/trending-edits" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/work" element={<MyWork />} />
@@ -123,6 +138,5 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
 
 export default App;
