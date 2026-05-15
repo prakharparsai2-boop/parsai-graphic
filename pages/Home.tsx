@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/Hero";
 import Showreel from "../components/Showreel";
+import ReelsCarousel from "../components/ReelsCarousel";
 import Services from "../components/Services";
 import Work from "../components/Work";
 import HowItWorks from "../components/HowItWorks";
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
       <HeroBackgroundWrapper>
         <Hero />
         <Showreel />
+        <ReelsCarousel />
       </HeroBackgroundWrapper>
       <WebsiteBackgroundWrapper>
         <Services />
