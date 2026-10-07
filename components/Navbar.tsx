@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
           {/* CTA Button (Visible on Laptop+) */}
           <div className="nav-cta anim-nav-cta">
             <a
-              href="https://wa.me/919926290283"
+              href="https://wa.me/919926490283"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-button"
@@ -162,7 +162,7 @@ const Navbar: React.FC = () => {
           {/* Bottom CTA */}
           <div className="mobile-menu-footer">
             <a
-              href="https://wa.me/919926290283"
+              href="https://wa.me/919926490283"
               target="_blank"
               rel="noopener noreferrer"
               className="mobile-cta-btn"

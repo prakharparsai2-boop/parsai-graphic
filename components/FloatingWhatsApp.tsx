@@ -42,7 +42,7 @@ const FloatingWhatsApp: React.FC = () => {
 
     return (
         <a
-            href="https://wa.me/919926290283"
+            href="https://wa.me/919926490283"
             target="_blank"
             rel="noopener noreferrer"
             className={`floating-whatsapp ${visible ? 'show' : 'hide'}`}
