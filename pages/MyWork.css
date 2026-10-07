@@ -61,6 +61,13 @@
 
   .my-work-title {
     font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .my-work-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0 1rem;
   }
 }
 
@@ -172,4 +179,138 @@
 /* Contact Section Delay */
 .my-work-contact-wrapper.anim-work-fade {
   animation-delay: 0.8s;
+}
+
+/* =========================================
+   NEW TABS AND VIDEO GRID STYLES
+   ========================================= */
+
+/* Tabs Container */
+.work-tabs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.work-tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.work-tab-btn:hover {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.work-tab-btn.active {
+  background: white;
+  color: black;
+  border-color: white;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .work-tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Video Grid System */
+.video-grid {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Horizontal (16:9) */
+.horizontal-grid {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .horizontal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .horizontal-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Vertical (9:16) for Shorts */
+.vertical-grid {
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .vertical-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .vertical-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .vertical-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .vertical-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Video Card (Aspect Ratio maintainer) */
+.video-card {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* 16:9 Aspect Ratio */
+.horizontal-grid .video-card {
+  padding-bottom: 56.25%;
+  /* 9 / 16 */
+}
+
+/* 9:16 Aspect Ratio */
+.vertical-grid .video-card {
+  padding-bottom: 177.77%;
+  /* 16 / 9 */
+}
+
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }

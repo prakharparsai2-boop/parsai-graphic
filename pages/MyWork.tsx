@@ -1,13 +1,17 @@
-import React from "react";
-import { ArrowUpRight, Play } from "lucide-react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import WebsiteBackgroundWrapper from "../components/WebsiteBackgroundWrapper";
 import Contact from "../components/Contact";
-import { projects } from "../data/projects";
-import "../components/Work.css"; // Reusing card styles
+import { portfolioVideos, categories, VideoCategory } from "../data/portfolioVideos";
 import "./MyWork.css";
 
 const MyWork: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<VideoCategory>("Talking Head");
+
+  const filteredVideos = portfolioVideos.filter((video) => video.category === activeTab);
+
+  // Decide grid type based on active tab
+  const isVertical = activeTab === "Talking Head" || activeTab === "Reels & Shorts";
+
   return (
     <WebsiteBackgroundWrapper>
       <div className="my-work-page">
@@ -15,7 +19,7 @@ const MyWork: React.FC = () => {
         <div className="container">
           <div className="my-work-header">
             <h1 className="my-work-title anim-work-title delay-100">
-              Featured <span className="text-accent">Projects</span>
+              My <span className="text-accent">Work</span>
             </h1>
             <p className="my-work-subtitle anim-work-fade delay-200">
               A curated selection of commercial projects, documentaries, music
@@ -24,56 +28,40 @@ const MyWork: React.FC = () => {
           </div>
         </div>
 
-        {/* Grid */}
+        {/* Tabs */}
         <div className="container">
-          <div className="work-grid">
-            {projects.map((project) => (
-              <Link
-                to={`/work/${project.slug}`}
-                key={project.id}
-                className="project-card group-link anim-work-fade"
+          <div className="work-tabs-container anim-work-fade delay-300">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`work-tab-btn ${activeTab === category ? "active" : ""}`}
+                onClick={() => setActiveTab(category)}
               >
-                <div className="project-card-inner group">
-                  {/* Image Container */}
-                  <div className="project-image-wrapper">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="project-image"
-                    />
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                    {/* Hover Overlay with Play Button */}
-                    <div className="project-image-overlay">
-                      <div className="play-circle">
-                        <Play className="icon-play" fill="currentColor" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content Container */}
-                  <div className="project-content">
-                    <div className="project-row-top">
-                      <h3 className="project-title">{project.title}</h3>
-                      <div className="project-arrow-btn">
-                        <ArrowUpRight size={20} />
-                      </div>
-                    </div>
-                    <div className="project-row-bottom">
-                      <span className="project-category">
-                        {project.category}
-                      </span>
-                      <span className="project-dot">•</span>
-                      <span className="project-year">{project.year}</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+        {/* Video Grid */}
+        <div className="container">
+          <div className={`video-grid ${isVertical ? "vertical-grid" : "horizontal-grid"} anim-work-fade delay-400`} key={activeTab}>
+            {filteredVideos.map((video) => (
+              <div key={video.id} className="video-card">
+                <iframe
+                  className="video-iframe"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&showinfo=0`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Contact Section */}
-        <div className="my-work-contact-wrapper anim-work-fade">
+        <div className="my-work-contact-wrapper anim-work-fade delay-500">
           <Contact />
         </div>
       </div>

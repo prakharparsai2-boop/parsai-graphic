@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Layers, Aperture, Film, Scissors } from "lucide-react";
 import MarqueeButton from "./MarqueeButton";
+import WorkButton from "./WorkButton";
 import PausableAnimation from "./PausableAnimation";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import "./Hero.css";
@@ -75,8 +76,9 @@ const Hero: React.FC = () => {
                 I create visual stories that engage and inspire.
               </p>
 
-              <div className="anim-intro-item">
+              <div className="anim-intro-item" style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <MarqueeButton />
+                <WorkButton text="My Work" to="/work" />
               </div>
             </div>
 
@@ -86,7 +88,7 @@ const Hero: React.FC = () => {
             {/* Right Column: Stats */}
             <div className="hero-stats anim-stats">
               <div className="stat-label">Years of Experience</div>
-              <div className="stat-value">02+</div>
+              <div className="stat-value">03+</div>
             </div>
           </div>
 

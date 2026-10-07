@@ -14,16 +14,16 @@ import "./Showreel.css";
 
 const VIDEOS = [
   {
-    id: "1165342236",
+    id: "1233713919",
     title: "Your Brand Presence Matters",
     subtitle: "Our work in motion",
     desc: "We help brands build a strong digital presence through clean visuals, sharp edits, and motion that grabs attention. This video shows what we do in motion.",
   },
   {
-    id: "1170638202", // Replaced invalid ID with a working one
-    title: "Comming soon",
-    subtitle: "We are working on it",
-    desc: "Soon we will be adding more videos to our showreel",
+    id: "1233713723", // Replaced invalid ID with a working one
+    title: "Video Editor Showreel",
+    subtitle: "Hi, I'm Prakhar — a Video Editor and Motion Designer.",
+    desc: "This showreel showcases my video editing, motion graphics, transitions, visual storytelling, and creative work created in DaVinci Resolve.",
   },
 ];
 

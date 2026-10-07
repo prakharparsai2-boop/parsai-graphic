@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import "./MarqueeButton.css";
 
-const MarqueeButton: React.FC = () => {
+interface MarqueeButtonProps {
+  text?: string;
+  to?: string;
+}
+
+const MarqueeButton: React.FC<MarqueeButtonProps> = ({ text = "Hire Me", to = "/contact" }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const isInView = useIntersectionObserver(btnRef, { rootMargin: '50px' });
 
   return (
-    <Link to="/contact" style={{ textDecoration: "none" }}>
+    <Link to={to} style={{ textDecoration: "none" }}>
       <button ref={btnRef} className="cta-primary marquee-btn">
         <div
           className="marquee-track"
@@ -16,22 +21,22 @@ const MarqueeButton: React.FC = () => {
         >
           {/* Using &nbsp; to ensure consistent spacing without CSS padding causing gaps */}
           <span className="marquee-text">
-            Hire Me &nbsp;
+            {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
-            &nbsp; Hire Me &nbsp;
+            &nbsp; {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
-            &nbsp; Hire Me &nbsp;
+            &nbsp; {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
-            &nbsp; Hire Me &nbsp;
+            &nbsp; {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
             &nbsp;
           </span>
           <span className="marquee-text">
-            Hire Me &nbsp;
+            {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
-            &nbsp; Hire Me &nbsp;
+            &nbsp; {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
-            &nbsp; Hire Me &nbsp;
+            &nbsp; {text} &nbsp;
             <img src="arrow.gif" alt="arrow" width={20} height={20} />
             &nbsp;
           </span>
