@@ -253,35 +253,95 @@
   }
 }
 
-/* Vertical (9:16) for Shorts */
-.vertical-grid {
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
+/* Swiper Carousel Styles for Vertical Reels */
+.reel-carousel-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  position: relative;
 }
 
-@media (min-width: 480px) {
-  .vertical-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.reel-swiper {
+  width: 100%;
+  padding-top: 40px !important;
+  padding-bottom: 50px !important;
+}
+
+.reel-slide {
+  width: 280px;
+  height: auto;
+  transition: transform 0.3s ease;
 }
 
 @media (min-width: 768px) {
-  .vertical-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+  .reel-slide {
+    width: 320px;
   }
 }
 
 @media (min-width: 1024px) {
-  .vertical-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .reel-slide {
+    width: 360px;
   }
 }
 
-@media (min-width: 1536px) {
-  .vertical-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.slider-controler {
+  position: relative;
+  bottom: -1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1.5rem;
+  z-index: 20;
+}
+
+.slider-arrow {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted, #ccc);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.slider-arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.custom-pagination {
+  position: relative !important;
+  width: auto !important;
+  bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-pagination .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.3);
+  width: 8px;
+  height: 8px;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background: white;
+  width: 24px;
+  border-radius: 8px;
 }
 
 /* Video Card (Aspect Ratio maintainer) */
@@ -291,17 +351,24 @@
   background: #000;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+.reel-swiper .swiper-slide-active .video-card {
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
 }
 
 /* 16:9 Aspect Ratio */
+.horizontal-card,
 .horizontal-grid .video-card {
   padding-bottom: 56.25%;
   /* 9 / 16 */
 }
 
 /* 9:16 Aspect Ratio */
-.vertical-grid .video-card {
+.vertical-card,
+.reel-slide .video-card {
   padding-bottom: 177.77%;
   /* 16 / 9 */
 }
