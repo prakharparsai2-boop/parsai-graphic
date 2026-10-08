@@ -381,3 +381,57 @@
   height: 100%;
   border: none;
 }
+
+/* =========================================
+   TABLET & MOBILE SLIDER CONTROLS
+   Arrows flanking pagination dots on ≤1024px
+   Desktop layout is completely unchanged.
+   ========================================= */
+
+@media (max-width: 1024px) {
+
+  /* Make the control bar always clearly visible */
+  .slider-controler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    bottom: 0;
+  }
+
+  /* Slightly smaller arrows for tablet/mobile so they don't overwhelm */
+  .slider-controler .slider-arrow {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+
+  /* Pagination dots row – centered between the arrows */
+  .slider-controler .custom-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Even tighter on very small phones */
+  .slider-controler {
+    gap: 1rem;
+  }
+
+  .slider-controler .slider-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .slider-controler .custom-pagination {
+    max-width: 140px;
+    gap: 6px;
+  }
+}
