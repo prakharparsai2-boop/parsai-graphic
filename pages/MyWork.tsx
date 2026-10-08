@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import WebsiteBackgroundWrapper from "../components/WebsiteBackgroundWrapper";
 import Contact from "../components/Contact";
 import { portfolioVideos, categories, VideoCategory } from "../data/portfolioVideos";
-import "./MyWork.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import "./MyWork.css";
 const MyWork: React.FC = () => {
   const [activeTab, setActiveTab] = useState<VideoCategory>("Talking Head");
 
@@ -44,20 +52,71 @@ const MyWork: React.FC = () => {
         </div>
 
         {/* Video Grid */}
-        <div className="container">
-          <div className={`video-grid ${isVertical ? "vertical-grid" : "horizontal-grid"} anim-work-fade delay-400`} key={activeTab}>
-            {filteredVideos.map((video) => (
-              <div key={video.id} className="video-card">
-                <iframe
-                  className="video-iframe"
-                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&showinfo=0`}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            ))}
-          </div>
+        <div className="container" key={activeTab}>
+          {isVertical ? (
+            <div className="reel-carousel-container anim-work-fade delay-400">
+              <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                initialSlide={Math.min(1, filteredVideos.length - 1)}
+                loop={filteredVideos.length > 3}
+                slidesPerView={'auto'}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 150,
+                  modifier: 2.5,
+                  slideShadows: true,
+                }}
+                pagination={{ el: '.custom-pagination', clickable: true }}
+                navigation={{
+                  nextEl: '.swiper-btn-next',
+                  prevEl: '.swiper-btn-prev',
+                }}
+                modules={[EffectCoverflow, Pagination, Navigation]}
+                className="reel-swiper"
+              >
+                {filteredVideos.map((video) => (
+                  <SwiperSlide key={video.id} className="reel-slide">
+                    <div className="video-card vertical-card">
+                      <iframe
+                        className="video-iframe"
+                        src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&showinfo=0`}
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  </SwiperSlide>
+                ))}
+
+                <div className="slider-controler">
+                  <div className="swiper-btn-prev slider-arrow">
+                    <ChevronLeft size={24} />
+                  </div>
+                  <div className="custom-pagination"></div>
+                  <div className="swiper-btn-next slider-arrow">
+                    <ChevronRight size={24} />
+                  </div>
+                </div>
+              </Swiper>
+            </div>
+          ) : (
+            <div className="video-grid horizontal-grid anim-work-fade delay-400">
+              {filteredVideos.map((video) => (
+                <div key={video.id} className="video-card horizontal-card">
+                  <iframe
+                    className="video-iframe"
+                    src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&showinfo=0`}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Contact Section */}
